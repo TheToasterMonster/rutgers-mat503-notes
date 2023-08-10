@@ -1,0 +1,174 @@
+\chapter{Differentiation}
+\marginpar{\small Lecture 2}
+
+Given a function $f : \C \to \C$, when is $f$
+differentiable?
+
+\section{Revisiting Multivariable Calculus}
+When is a function $f : \R^2 \to \R$ differentiable?
+
+Recall that calculus is \textit{linearization}. That is,
+given something complicated, zoom in close enough and
+it looks like a line.
+
+\begin{tcolorbox}[title=Definition (Little-$o$)]
+  We say $E = o(|h|)$ if
+  \[\frac{E}{|h|} \to 0\]
+  as $|h| \to 0$.
+\end{tcolorbox}
+
+\begin{tcolorbox}[title=Definition (Differentiability in $\R^2$)]
+  $f : \R^2 \to \R^2$ is \textit{differentiable} at
+  $z$ if
+  \[f(z + h) = f(z) + Lh + o(|h|),\]
+  where $L$ is a linear map.
+\end{tcolorbox}
+
+In other words, $f : \R^n \to \R^m$ is differentiable if
+it is \textit{locally affine}. If
+\[
+f(x_1, \dots, x_m) = (f_1(\vec{x}), \dots, f_m(\vec{x}))
+,\]
+then
+\[
+f(z + h) = f(z) + Lh + o(|h|)
+.\] 
+Here $L$ is the \textit{total derivative}, given by
+\[
+  L = \left(\frac{\partial f_i}{\partial x_j}\right)_{ij}
+.\]
+
+\section{Holomorphic Functions}
+We can identify a function $f(x, y) = (u, v)$ with
+the complex valued function $f(x + iy) = u + iv$, where
+we say that $u = \Re f$ and $v = \Im f$. Here,
+\[
+L =
+\left(\begin{matrix}
+  u_x & u_y \\
+  v_x & v_y
+\end{matrix}\right)
+.\] 
+
+Using the additional structure of the complex numbers
+(instead of just 2D vectors), we can write
+\[\frac{f(z + h) - f(z)}{h} = L + o(1).\]
+Notice that dividing by $h$ makes no sense in $\R^n$, but
+we can over $\C$.
+
+\begin{tcolorbox}[title=Definition (Holomorphic)]
+  $f : \C \to \C$ is \textit{holomorphic} at $z$ if
+  \[
+    \lim_{h \to 0} \frac{f(z + h) - f(z)}{h}
+  \]
+  exists. If it does, then we call this limit $f'(z)$.
+\end{tcolorbox}
+
+\begin{tcolorbox}[title=Definition (Continuity)]
+  $f$ is \textit{continuous} if for all $\epsilon > 0$,
+  there exists a $\delta > 0$ such that whenever
+  $|h|  < \delta$, we have
+  \[
+  |f(z + h) - f(z)| < \epsilon
+  .\] 
+\end{tcolorbox}
+
+How can we visualize these functions?
+To graph a function $f : \R^2 \to \R^2$, we would need
+$\R^4$ with 4 dimensions. This is hard. Instead,
+we show a ``before'' and ``after'' image.
+
+% insert of a picture of the above here
+
+\subsection{Classic Example: Smooth but Not Analytic}
+Let
+\[
+f(z) =
+\begin{cases}
+  e^{-1 / z^2}, & z \neq 0 \\
+  0, & z = 0.
+\end{cases}
+\] 
+
+Over $\R$, as $z \to 0$, $-\frac{1}{z^2} \to -\infty$
+and $f \to 0$.  And as $|z| \to \infty$, $f \to e^0 = 1$. 
+So $f$ is continuous. $f$ is also differentiable,
+with
+\[f'(z) = 2z^{-3}e^{-\frac{1}{z^2}}.\]
+Notice that as $z \to 0$, $f' \to 0$ as well. What
+about further derivatives?
+\[
+  f^{(n)}(z) = P_n(z^{-1})e^{-\frac{1}{z^2}}
+,\] 
+so $f^{(n)} \to 0$ also as $z \to 0$. So
+$f \in C^\infty(\R)$.
+\footnote{Meaning $f$ is \textit{smooth}, or infinitely
+differentiable.}
+
+Now take
+\[
+g(z) =
+\begin{cases}
+  e^{-1 / z^2}, & z > 0 \\
+  0, & z \le 0.
+\end{cases}
+\]
+This is an example of a \textit{smooth bump function}.
+\footnote{These are used in real analysis, particularly
+for \textit{partitions of unity}.}
+All derivatives of $g$ are $0$ for $z > 0$ as before,
+and they are also $0$ for $z \le 0$ by definition. So
+$g$ is also smooth, with $f \equiv g$ on $z \ge 0$ and
+$f \ne g$ on $z < 0$.
+
+Notice that $f$ and $g$ both extend
+$\left.e^{-1 / z^2}\right\rvert_{\R^+}$ to all of $\R$,
+yet $f \ne g$. We will see later that this cannot
+happen for complex-analytic functions.
+\footnote{This is the fact that \textit{analytic continuations} are \textit{unique}.}
+
+\begin{tcolorbox}[title=Definition (Analytic)]
+  A function $f$ is \textit{analytic} at $z$ if there
+  exists an $\epsilon > 0$ and $a_0, a_1, a_2, \dots$
+  such that for all $|h| < \epsilon$, the series
+  \[
+  a_0 + a_1 h + a_2 h^2 + \dots
+  = \sum_{i = 0}^{\infty} a_i h^i
+  \] 
+  converges absolutely and is equal to $f(z + h)$.
+\end{tcolorbox}
+
+In simpler words, $f$ is analytic at $z$ if it has a
+locally convergent Taylor series expansion around $z$.
+
+Now, is
+\[
+f(z) =
+\begin{cases}
+  e^{-1 / z^2}, & z \neq 0 \\
+  0, & z = 0
+\end{cases}
+\] 
+analytic at $0$? All the Taylor coefficients
+are zero:
+\[a_0 = a_1 = a_2 = \dots = 0.\]
+Thus the series expansion of $f$ converges to $0$, but
+there is no $\epsilon$-neighborhood of $0$ where
+$f \equiv 0$.
+So $f$ is \textit{not} analytic. This also cannot
+happen for complex-valued functions.
+\footnote{This is why the terms \textit{holomorphic} and
+\textit{analytic} are often used interchangeably in
+  complex analysis.}
+
+What about $f(z) = e^{-1 / z^2}$ for $z \in \C$?
+Now, $f$ isn't even continuous! If $z \to 0$
+from $\R$, $f \to 0$. But if $z = iy$ with $y \to 0$,
+\[f(z) = e^{-\frac{1}{(iy)^2}} = e^{{1}/{y^2}},\]
+which approaches $\infty$. The two paths give conflicting
+limits!
+\footnote{In fact, you can actually make $f$ converge to
+  any value by picking some path. This is because $f$
+  has an \textit{essential singularity} at $0$.}
+
+\section{The Cauchy-Riemann Equations}

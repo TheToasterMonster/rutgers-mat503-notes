@@ -36,7 +36,7 @@ been solved everywhere, but cubics were still a mystery
 the circle'').
 
 c.~1510, del Ferro figures out how to
-solve the depressed cubic (no \\ quadratic term):
+solve the depressed cubic (no quadratic term):
 \[ax^3 + cx + d = 0\]
 
 At the time, mathematicians were employed by the rich,
@@ -75,7 +75,7 @@ own book.
 
 However, after inviting Tartaglia to dinner and lots
 of drinks, Cardano eventually convinces Tartaglia.
-Tartaglia makes Cardano \\ solemnly swear to not reveal
+Tartaglia makes Cardano solemnly swear to not reveal
 the solution to the public, and he does so.
 
 Later on, Ferrari becomes a student of Cardano and
@@ -98,7 +98,7 @@ get into an actual duel, but Tartaglia manages to
 escape before that can happen.
 
 
-\begin{tcolorbox}[title=Note: Negative numbers, sharp corners, breakable, enhanced, parbox=false]
+\begin{tcolorbox}[title=Aside: Negative numbers]
 Interestingly, mathematicians cared about $i$ even
 before they cared about negative numbers! How do we know
 this? On top of considering cubics geometrically (with
@@ -131,7 +131,7 @@ so we have eliminated the quadratic term.
 Thus we need only consider cubics of the form
 \[y^3 + Ay + B = 0.\]
 
-\begin{tcolorbox}[title=Note: Quadratic equations, sharp corners, breakable, enhanced, parbox=false]
+\begin{tcolorbox}[title=Aside: Quadratic equations]
   How to solve  the quadratic $ax^2 + bx + c = 0$?
 
   First make it monic:
@@ -139,25 +139,26 @@ Thus we need only consider cubics of the form
   Depress it by letting
   \[
   x = y - \frac{b}{2a}
-  .\] 
+  .\]
   Then we have
   \[
     \left(y - \frac{b}{2a}\right)^2 + \frac{b}{a}\left(y - \frac{b}{2a}\right) + \frac{c}{a} = 0
-  ,\] 
+  ,\]
   \[
     y^2 - \cancel{2 \frac{b}{2a} y} + \frac{b^2}{4a^2}
   + \cancel{\frac{b}{a} y} - \frac{b^2}{2a^2}
   + \frac{c}{a} = 0
   ,\]
   \[
-    y^2 - \frac{1}{4} \frac{b^2}{a^2} + \frac{4ca}{4a^2}
+    y^2 - \frac{1}{4} \frac{b^2}{a^2} + \frac{4ac}{4a^2}
     = 0
-  ,\] 
+  ,\]
   \[
-  y^2 = \frac{b^2 - 4ac}{4a^2}
-  .\] 
-  From here, taking square roots and shifting by
-  $\frac{b}{2a}$ again yields the usual quadratic formula.
+    y^2 = \frac{b^2 - 4ac}{4a^2}
+  .\]
+  From here, taking square roots and
+  shifting by $\frac{b}{2a}$ again yields
+  the usual quadratic formula.
 \end{tcolorbox}
 
 Although depressing the quadratic makes it trivial, the
@@ -165,3 +166,69 @@ same is not true for cubics! At first sight, the depressed
 cubic is not any easier than the general cubic.
 But the key insight is actually to perform some seemingly
 unnecessary auxiliary calculations.
+
+Notice that
+\begin{gather*}
+  (z + w)^3 = z^3 + 3z^2w + 3zw^2 + w^3 = 3wz(z + w) + z^3 + w^3, \\
+  (z + w)^3 - 3wz(z + w) - z^3 - w^3 = 0.
+\end{gather*}
+This looks awfully similar to the depressed cubic if
+we let $y = z + w$ and pick carefully choose $z$ and $w$
+so that
+\[
+\left\{\begin{array}{@{}l@{}}
+  A = -3wz \\
+  B = -z^3 - w^3.
+\end{array}\right.
+\] 
+To solve this, notice that
+\[w = -\frac{A}{3z}\]
+by the first equation. Substituting this into the second
+equation yields
+\begin{gather*}
+  z^3 - \frac{A^3}{27z^3} = -B, \\
+  z^6 + Bz^3 - \frac{A^3}{27} = 0.
+\end{gather*}
+This equation is now quadratic in $z^3$!
+\footnote{This is a result of the symmetry group $S_3$ being \textit{solvable}.}
+So by the quadratic formula,
+\[
+  z^3 = \frac{-B + \sqrt{B^2 + \frac{4A^3}{27}}}{2}
+.\] 
+Using $z^3 + w^3 = -B$, we also have
+\[
+  w^3 = \frac{-B - \sqrt{B^2 + \frac{4A^3}{27}}}{2}
+.\] 
+This means that
+\footnote{The quantity $\frac{B^2}{4} + \frac{A^3}{27}$ is called the \textit{discriminant} of the cubic.}
+\begin{gather*}
+  z = \sqrt[3]{-\frac{B}{2} + \sqrt{\frac{B^2}{4} + \frac{A^3}{27}}} \\
+  w = \sqrt[3]{-\frac{B}{2} - \sqrt{\frac{B^2}{4} + \frac{A^3}{27}}},
+\end{gather*}
+so finally $y = z + w$ as defined above.
+
+\subsection{A Peculiar Example}
+Consider
+\[x^3 - 15x - 4 = 0.\]
+$A = -15$ and $B = -4$, so the discriminant is
+ \[
+\frac{B^2}{4} + \left(\frac{A}{3}\right)^3 = 4 - 125 = -121
+.\]
+Now we need to take the square root of a negative
+number! For now, proceeding anyway gives
+\[
+x = \sqrt[3]{2 + 11i} + \sqrt[3]{2 - 11i}
+.\] 
+
+But soon people realized:
+\[
+  (2 + i)^3 = 8 + 3(2^2)i - 3(2) - i = 2 + 11i
+.\] 
+Then we end up with
+\[x = (2 + i) + (2 - i) = 4,\]
+a legitimate \textit{real} solution. The $+i$ and $-i$
+canceled!
+
+So people were willing to deal with complex
+numbers here because they needed them to reach the real
+answer that they expected.

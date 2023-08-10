@@ -1,4 +1,5 @@
 \documentclass[12pt, letterpaper, twoside]{report}
+\usepackage{microtype}
 \usepackage{kpfonts}
 \usepackage{amsmath, amssymb, amsthm}
 \usepackage{hyperref}
@@ -6,6 +7,8 @@
 \usepackage[many]{tcolorbox}
 \usepackage{footnote}
 \usepackage{cancel}
+
+\tcbset{sharp corners, breakable, enhanced, parbox=false}
 
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\N}{\mathbb{N}}
@@ -16,7 +19,7 @@
 \title{Math 503: Complex Analysis}
 \author{Frank Qiang}
 \date{Rutgers University
-\footnote{I did not attend this class in person, nor do I go to this university.}
+\footnote{Disclaimer: I did not attend this class in person, nor do I go to this university.}
 , Fall 2020}
 
 \begin{document}
@@ -24,4 +27,5 @@
   \tableofcontents
 
   \input{lectures/lecture01.tex}
+  \input{lectures/lecture02.tex}
 \end{document}
