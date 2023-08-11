@@ -1,4 +1,5 @@
-\documentclass[12pt, letterpaper, twoside]{report}
+\documentclass[12pt, letterpaper]{report}
+\usepackage[margin=0.5in]{geometry}
 \usepackage{microtype}
 \usepackage{kpfonts}
 \usepackage{amsmath, amssymb, amsthm}
@@ -7,8 +8,13 @@
 \usepackage[many]{tcolorbox}
 \usepackage{footnote}
 \usepackage{cancel}
+\usepackage{titlesec}
 
 \tcbset{sharp corners, breakable, enhanced, parbox=false}
+
+\titleformat{\chapter}[display]
+    {\normalfont\huge\bfseries}{\chaptertitlename\ \thechapter}{20pt}{\Huge}
+\titlespacing*{\chapter}{0pt}{0pt}{40pt}
 
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\N}{\mathbb{N}}
