@@ -1,7 +1,7 @@
 \chapter{Differentiation}
 
 Given a function $f : \C \to \C$, when is $f$
-differentiable?
+differentiable and what does that imply?
 
 \section{Revisiting Multivariable Calculus}
 When is a function $f : \R^2 \to \R^2$ differentiable?
@@ -37,10 +37,10 @@ Here $L$ is the \textit{total derivative}, given by
   L = \left(\frac{\partial f_i}{\partial x_j}\right)_{ij}
 .\]
 
-\section{Holomorphic Functions}
+\section{Holomorphic Functions: Limit Perspective}
 We can identify a function $f(x, y) = (u, v)$ with
 the complex valued function $f(x + iy) = u + iv$, where
-we say that $u = \Re f$ and $v = \Im f$. Here,
+we write that $u = \Re f$ and $v = \Im f$. Here,
 \[
 L =
 \left(\begin{matrix}
@@ -172,3 +172,183 @@ limits!
   has an \textit{essential singularity} at $0$.}
 
 \section{The Cauchy-Riemann Equations}
+Recall that $f$ being holomorphic implies
+\[
+  \frac{f(z + h) - f(z)}{h} \to f'(z)
+\] 
+as $h \to 0$ in $\C$. In $\R^2$ the equivalent is
+$f(z + h) = f(z) + Lh + o(|h|)$ where $f = u + iv$ and
+\[
+L =
+\left(\begin{matrix}
+  u_x & u_y \\
+  v_x & v_y
+\end{matrix}\right)
+.\] 
+
+The power of $\C$ is that the previous limit is the same
+no matter how $h$ approaches $0$. If we let
+$h = h_1 + ih_2$, what happens when $h_2 = 0$? So
+$h = h_1 \in \R$. Then as $h_1 \to 0$,
+\[
+  \frac{f(z + h_1) - f(z)}{h_1} \to f'(z) = \frac{\partial}{\partial x} f = u_x + iv_x
+.\] 
+On the other hand, if $h_1 = 0$ so that $h = ih_2$
+where $h_2 \in \R$. Then as $h_2 \to 0$,
+ \[
+   \frac{f(z + ih_2) - f(z)}{ih_2} \to f'(z) = \frac{1}{i}\left(\frac{\partial}{\partial y} f\right) = \frac{1}{i} (u_y + iv_y)
+.\]
+So these two quantities must be equal!
+
+\begin{tcolorbox}[title=Theorem (Cauchy-Riemann equations)]
+  If $f = u + iv$ is holomorphic at $z = x + iy$, then
+  $u_x = v_y$ and $v_x = -u_y$.
+\end{tcolorbox}
+
+\section{Conformal Maps}
+The Cauchy-Riemann equations imply that for holomorphic
+$f$,
+\[
+L =
+\left(\begin{matrix}
+  u_x & u_y \\
+  -u_y & u_x
+\end{matrix}\right) =
+\left(\begin{matrix}
+    A & B \\
+    -B & A
+\end{matrix}\right)
+.\]
+What does this mean geometrically?
+
+\begin{tcolorbox}[title=Theorem ($QR$ decomposition)]
+  Any matrix $L$ can be decomposed into $L = QR$ where
+  $Q$ is orthogonal
+  \footnote{One way to define \textit{orthogonal} is that
+    $Q$ is orthogonal if $QQ^T = I$.}
+  and $R$ is upper-triangular.
+\end{tcolorbox}
+
+In other words, given any matrix, we can rotate it so that
+it is upper-triangular. In particular, in the case of a
+$2 \times 2$ matrix $L$, we can write
+\footnote{Note that we factored $R$ by pulling out the
+diagonal entries.}
+\[
+L =
+\underbrace{\left(\begin{matrix}
+    \cos \theta & \sin \theta \\
+    -\sin \theta & \cos \theta
+\end{matrix}\right)}_{K}
+\underbrace{\left(\begin{matrix}
+    x_1 & 0 \\
+    0 & x_2
+\end{matrix}\right)}_{A}
+\underbrace{\left(\begin{matrix}
+    1 & C \\
+    0 & 1
+\end{matrix}\right)}_{N}
+,\]
+where $K$ is ``compact,'' $A$ is ``abelian,''
+\footnote{Or ``diagonal.''}
+and $N$ is ``unipotent.''
+\footnote{Same as saying all eigenvalues are $1$.}
+
+% add images here showing this
+Notably, $K$ is a rotation, $A$ is a dilation, and $N$
+is a shear.
+
+\begin{tcolorbox}[title=Exercise]
+  If
+  \[
+  L =
+  \left(\begin{matrix}
+      A & B \\
+      -B & A
+  \end{matrix}\right)
+  ,\]
+  then $C = 0$ and $x_1 = x_2$. In other words, there
+  is no shearing and the dilation is uniform.
+\end{tcolorbox}
+
+The above exercise implies that locally, angles are
+\textit{preserved} by $L$. This is called
+\textit{conformal}.
+
+\subsection{Orientation}
+Consider the Jacobian of $f$:
+\[
+J = \det L = u_x^2 + u_y^2 > 0
+\]
+since $u_x, u_y \in \R$. So in addition to being
+conformal, $L$ also preserves \textit{orientations}.
+
+Note that in general, conformal maps need not preserve
+orientation. The map $f(z) = \overline{z}$ is perfectly
+conformal, but it reverses orientation.
+
+\subsection{Dilation}
+By the Cauchy-Riemann equations,
+\[
+\det L = u_x^2 + u_y^2 = u_x^2 + (-v_x)^2
+= u_x^2 + v_x^2 = \left\lvert\smash[b]{\underbrace{u_x + iv_x}_{\frac{\partial}{\partial x} f = f'(z)}}\right\rvert^2
+.\]
+So $\det L = |f'(z)|^2$.
+
+The important takeaway is that the extra geometry from
+division by complex numbers (in addition to just being a
+usual vector space) adds a lot of restrictions (and
+in turn nice properties).
+
+\section{Holomorphic Functions: Change of Variables Perspective}
+Recall the differential operator
+$\frac{\partial}{\partial x}$:
+\[
+\frac{\partial}{\partial x} f = u_x + iv_y
+.\]
+This is if we think of $f$ as
+$f(x, y) = (u(x, y), v(x, y))$.
+
+Now, think of $f$ as a function of two other auxiliary
+variables, $z$ and $\overline{z}$.
+\footnote{Here, think of $z$ and $\overline{z}$ as
+  independent variables. They are simply the result of
+  the change of variables
+  $(z, \overline{z}) = (x + iy, x - iy)$.}
+Let
+\[
+  f_1(z, \overline{z}) = f\left(\smash[b]{\underbrace{\frac{z + \overline{z}}{2}}_{x}}, \smash[b]{\underbrace{\frac{z - \overline{z}}{2i}}_{y}}\right)
+.\]
+Then we can try to define the operation
+$\frac{\partial}{\partial z}$:
+\[
+\frac{\partial}{\partial z} f_1(z, \overline{z}) =
+\frac{\partial}{\partial z} f\left(\frac{z + \overline{z}}{2}, \frac{z - \overline{z}}{2i}\right) =
+f_x \frac{1}{2} + f_y \frac{1}{2i}
+\]
+by the chain rule. So as a differential operator,
+\[
+\frac{\partial}{\partial z} = \frac{1}{2} \left(\frac{\partial}{\partial x} + \frac{1}{i} \frac{\partial}{\partial y}\right)
+.\]
+Similarly, we can define
+$\frac{\partial}{\partial \overline{z}}$ by the chain rule
+as
+\[
+\frac{\partial}{\partial \overline{z}} = \frac{1}{2} \left(\frac{\partial}{\partial x} - \frac{1}{i}\frac{\partial}{\partial y}\right)
+.\]
+
+If $f$ is holomorphic, then $u_x = v_y$ and $u_y = -v_x$
+by the Cauchy-Riemann equations. So
+\[
+\frac{\partial}{\partial \overline{z}} f = \frac{1}{2}\left[u_x + iv_x - \frac{1}{i}(u_y + iv_y)\right]
+= \frac{1}{2}\left[(u_x - v_y) + i(v_x + u_y)\right] = 0
+.\]
+In other words, if $f$ is holomorphic, then it is
+``only a function of $z$.''
+
+\begin{tcolorbox}[title=Theorem]
+  $f$ is holomorphic if and only if
+  \[
+  \frac{\partial f}{\partial \overline{z}} = 0
+  .\]
+\end{tcolorbox}
