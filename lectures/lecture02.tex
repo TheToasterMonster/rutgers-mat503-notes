@@ -1,4 +1,4 @@
-\chapter{Differentiation}
+\chapter{Holomorphic Functions}
 
 Given a function $f : \C \to \C$, when is $f$
 differentiable and what does that imply?
@@ -56,11 +56,17 @@ Notice that dividing by $h$ makes no sense in $\R^n$, but
 we can over $\C$.
 
 \begin{tcolorbox}[title=Definition (Holomorphic)]
-  $f : \C \to \C$ is \textit{holomorphic} at $z$ if
+  $f : \Omega \to \C$ is \textit{holomorphic at} $z$ if
   \[
     \lim_{h \to 0} \frac{f(z + h) - f(z)}{h}
   \]
-  exists. If it does, then we call this limit $f'(z)$.
+  exists.
+  \footnote{Here, $\Omega$ is an \textit{open subset} of
+    $\C$.}
+  If it does, then we call this limit $f'(z)$.
+
+  $f$ is \textit{holomorphic on}
+  $\Omega$ if the above is true for all $z \in \Omega$.
 \end{tcolorbox}
 
 \begin{tcolorbox}[title=Definition (Continuity)]
@@ -350,6 +356,6 @@ In other words, if $f$ is holomorphic, then it is
 \begin{tcolorbox}[title=Theorem]
   $f$ is holomorphic if and only if
   \[
-  \frac{\partial f}{\partial \overline{z}} = 0
+  \frac{\partial}{\partial \overline{z}} f = 0
   .\]
 \end{tcolorbox}

@@ -1,4 +1,4 @@
-\documentclass[12pt, letterpaper]{report}
+\documentclass[12pt, letterpaper]{book}
 \usepackage[margin=0.5in]{geometry}
 \usepackage{microtype}
 \usepackage{kpfonts}
@@ -9,6 +9,9 @@
 \usepackage{footnote}
 \usepackage{cancel}
 \usepackage{titlesec}
+\usepackage{pgffor}
+
+\renewcommand{\chaptername}{Lecture}
 
 \tcbset{sharp corners, breakable, enhanced, parbox=false}
 
@@ -30,8 +33,16 @@
 
 \begin{document}
   \maketitle
-  \tableofcontents
 
-  \input{lectures/lecture01.tex}
-  \input{lectures/lecture02.tex}
+  \begingroup
+  \let\cleardoublepage\clearpage
+  \tableofcontents
+  \endgroup
+
+  \foreach \i in {00, 01, 02, 03, 04, ..., 50} {%
+    \edef\FileName{lectures/lecture\i.tex}%     The % here are necessary to eliminate any
+    \IfFileExists{\FileName}{%  spurious spaces that may get inserted
+       \input{\FileName}%       at these points
+    }
+}
 \end{document}
