@@ -10,18 +10,18 @@ Recall that calculus is \textit{linearization}. That is,
 given something complicated, zoom in close enough and
 it looks like a line.
 
-\begin{tcolorbox}[title=Definition (Little-$o$)]
+\begin{mybox}{nordblue}{Definition (Little-$o$)}
   We say $E = o(|h|)$ if
   \[\frac{E}{|h|} \to 0\]
   as $|h| \to 0$.
-\end{tcolorbox}
+\end{mybox}
 
-\begin{tcolorbox}[title=Definition (Differentiability in $\R^2$)]
+\begin{mybox}{nordblue}{Definition (Differentiability in $\R^2$)}
   $f : \R^2 \to \R^2$ is \textit{differentiable} at
   $z$ if
   \[f(z + h) = f(z) + Lh + o(|h|),\]
   where $L$ is a linear map.
-\end{tcolorbox}
+\end{mybox}
 
 In other words, $f : \R^n \to \R^m$ is differentiable if
 it is \textit{locally affine}. If
@@ -55,7 +55,7 @@ Using the additional structure of the complex numbers
 Notice that dividing by $h$ makes no sense in $\R^n$, but
 we can over $\C$.
 
-\begin{tcolorbox}[title=Definition (Holomorphic)]
+\begin{mybox}{nordblue}{Definition (Holomorphic)}
   $f : \Omega \to \C$ is \textit{holomorphic at} $z$ if
   \[
     \lim_{h \to 0} \frac{f(z + h) - f(z)}{h}
@@ -67,16 +67,16 @@ we can over $\C$.
 
   $f$ is \textit{holomorphic on}
   $\Omega$ if the above is true for all $z \in \Omega$.
-\end{tcolorbox}
+\end{mybox}
 
-\begin{tcolorbox}[title=Definition (Continuity)]
+\begin{mybox}{nordblue}{Definition (Continuity)}
   $f$ is \textit{continuous} if for all $\epsilon > 0$,
   there exists a $\delta > 0$ such that whenever
   $|h|  < \delta$, we have
   \[
   |f(z + h) - f(z)| < \epsilon
   .\] 
-\end{tcolorbox}
+\end{mybox}
 
 How can we visualize these functions?
 To graph a function $f : \R^2 \to \R^2$, we would need
@@ -132,7 +132,7 @@ yet $f \ne g$. We will see later that this cannot
 happen for complex-analytic functions.
 \footnote{This is the fact that \textit{analytic continuations} are \textit{unique}.}
 
-\begin{tcolorbox}[title=Definition (Analytic)]
+\begin{mybox}{nordblue}{Definition (Analytic)}
   A function $f$ is \textit{analytic} at $z$ if there
   exists an $\epsilon > 0$ and $a_0, a_1, a_2, \dots$
   such that for all $|h| < \epsilon$, the power series
@@ -141,7 +141,7 @@ happen for complex-analytic functions.
   = \sum_{i = 0}^{\infty} a_i h^i
   \] 
   converges absolutely and is equal to $f(z + h)$.
-\end{tcolorbox}
+\end{mybox}
 
 In simpler words, $f$ is analytic at $z$ if it has a
 locally convergent Taylor series expansion around $z$.
@@ -206,10 +206,10 @@ where $h_2 \in \R$. Then as $h_2 \to 0$,
 .\]
 So these two quantities must be equal!
 
-\begin{tcolorbox}[title=Theorem (Cauchy-Riemann equations)]
+\begin{mybox}{nordpurple}{Theorem (Cauchy-Riemann equations)}
   If $f = u + iv$ is holomorphic at $z = x + iy$, then
   $u_x = v_y$ and $v_x = -u_y$.
-\end{tcolorbox}
+\end{mybox}
 
 \section{Conformal Maps}
 The Cauchy-Riemann equations imply that for holomorphic
@@ -227,13 +227,13 @@ L =
 .\]
 What does this mean geometrically?
 
-\begin{tcolorbox}[title=Theorem ($QR$ decomposition)]
+\begin{mybox}{nordpurple}{Theorem ($QR$ decomposition)}
   Any matrix $L$ can be decomposed into $L = QR$ where
   $Q$ is orthogonal
   \footnote{One way to define \textit{orthogonal} is that
     $Q$ is orthogonal if $QQ^T = I$.}
   and $R$ is upper-triangular.
-\end{tcolorbox}
+\end{mybox}
 
 In other words, given any matrix, we can rotate it so that
 it is upper-triangular. In particular, in the case of a
@@ -265,7 +265,7 @@ This is the \textit{Iwasawa decomposition}.
 Notably, $K$ is a rotation, $A$ is a dilation, and $N$
 is a shear.
 
-\begin{tcolorbox}[title=Exercise]
+\begin{mybox}{nordred}{Exercise}
   If
   \[
   L =
@@ -276,7 +276,7 @@ is a shear.
   ,\]
   then $C = 0$ and $x_1 = x_2$. In other words, there
   is no shearing and the dilation is uniform.
-\end{tcolorbox}
+\end{mybox}
 
 The above exercise implies that locally, angles are
 \textit{preserved} by $L$. This is called
@@ -353,9 +353,9 @@ by the Cauchy-Riemann equations. So
 In other words, if $f$ is holomorphic, then it is
 ``only a function of $z$.''
 
-\begin{tcolorbox}[title=Theorem]
+\begin{mybox}{nordpurple}{Theorem}
   $f$ is holomorphic if and only if
   \[
   \frac{\partial}{\partial \overline{z}} f = 0
   .\]
-\end{tcolorbox}
+\end{mybox}

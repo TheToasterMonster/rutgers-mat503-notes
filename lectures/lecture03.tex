@@ -1,1 +1,45 @@
 \chapter{Power Series}
+
+\section{Last Time}
+Recall that a function $f : \Omega \to \C$, where
+$\Omega \subseteq \C$ is open, is holomorphic
+at $z \in \Omega$ if
+\[
+  f'(z) := \lim_{h \to 0} \frac{f(z + h) - f(z)}{h}
+.\]
+exists. $f$ is holomorphic on $\Omega$ if it is
+holomorphic at all $z \in \Omega$.
+
+If a function $f = u + iv$ is holomorphic, then:
+\begin{enumerate}[(i).]
+  \item The complex derivative $f'(z)$ satisfies
+    \[f'(z) = \frac{\partial}{\partial z} f = \frac{\partial}{\partial x} f = u_x + iv_x.\]
+  \item The Jacobian $\left\lvert J \right\rvert = \left\lvert f'(z) \right\rvert^2 = u_x^2 + v_x^2$.
+  \item (Cauchy-Riemann) $u_x = v_y$ and $u_y = -v_x$.
+  \item The partial derivative with respect to $\overline{z}$ satisfies
+    \[\frac{\partial}{\partial \overline{z}} f = 0.\]
+\end{enumerate}
+
+\begin{mybox}{darkyellow}{Example 1}
+  Let $f = (u, v) = u + iv$ where $u = x^2 + y^2$ and
+  $v = 2xy$. Is $f$ holomorphic?
+\end{mybox}
+
+\begin{proof}[Solution]
+  We can calculate
+  \[u_y = 2y, \quad v_x = 2y.\]
+  The Cauchy-Riemann equations are not satisfied since
+  $u_y \ne v_x$, so $f$ is \textit{not} holomorphic.
+\end{proof}
+
+\begin{mybox}{darkyellow}{Example 2}
+  Let $f = (u, v) = u + iv$ where $u = x^2 - y^2$ and
+  $v = 2xy$. Is $f$ holomorphic?
+\end{mybox}
+
+\begin{proof}[Solution]
+  Notice that $f$ is actually
+  \[f(z) = z^2 = (x + iy)^2 = x^2 - y^2 + 2ixy.\]
+  So $f$ \textit{is} holomorphic and it indeed satisfies
+  the Cauchy-Riemann equations.
+\end{proof}
