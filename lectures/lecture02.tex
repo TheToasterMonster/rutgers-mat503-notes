@@ -37,7 +37,7 @@ Here $L$ is the \textit{total derivative}, given by
   L = \left(\frac{\partial f_i}{\partial x_j}\right)_{ij}
 .\]
 
-\section{Holomorphic Functions: Limit Perspective}
+\section{Holomorphic Functions}
 We can identify a function $f(x, y) = (u, v)$ with
 the complex-valued function $f(x + iy) = u + iv$, where
 we write that $u = \Re f$ and $v = \Im f$. Here,
@@ -173,7 +173,7 @@ from $\R$, $f \to 0$. But if $z = iy$ with $y \to 0$,
 \[f(z) = e^{-\frac{1}{(iy)^2}} = e^{\frac{1}{y^2}},\]
 which approaches $\infty$. The two paths give conflicting
 limits!
-\footnote{In fact, you can actually make $f$ converge to
+\footnote{In fact, you can make $f$ converge to
   any value by picking some path. This is because $f$
   has an \textit{essential singularity} at $0$.}
 
@@ -307,7 +307,7 @@ division by complex numbers (in addition to just being a
 usual vector space) adds a lot of restrictions (and
 in turn nice properties).
 
-\section{Holomorphic Functions: Change of Variables Perspective}
+\section{Change of Variables Perspective}
 Recall the differential operator
 $\frac{\partial}{\partial x}$:
 \[
@@ -351,11 +351,5 @@ by the Cauchy-Riemann equations. So
 = \frac{1}{2}\left[(u_x - v_y) + i(v_x + u_y)\right] = 0
 .\]
 In other words, if $f$ is holomorphic, then it is
-``only a function of $z$.''
-
-\begin{mybox}{nordpurple}{Theorem}
-  $f$ is holomorphic if and only if
-  \[
-  \frac{\partial}{\partial \overline{z}} f = 0
-  .\]
-\end{mybox}
+``only a function of $z$,'' in the sense that
+$\frac{\partial}{\partial \overline{z}} f = 0$.

@@ -13,6 +13,7 @@
 \usepackage[shortlabels]{enumitem}
 
 \renewcommand{\chaptername}{Lecture}
+%\setlist{noitemsep}
 
 \definecolor{nordblue}{RGB}{135, 160, 190}
 \definecolor{nordyellow}{RGB}{230, 204, 147}
@@ -32,7 +33,24 @@
   #1,
 }
 
-\setlist{noitemsep}
+\newenvironment{thm}[1]{%
+  \begin{mybox}{nordpurple}{#1}
+}{\end{mybox}}
+
+\newenvironment{defin}[1]{%
+  \begin{mybox}{nordblue}{#1}
+}{\end{mybox}}
+
+\newenvironment{exer}[1]{%
+  \begin{mybox}{nordred}{#1}
+}{\end{mybox}}
+
+\newenvironment{examp}[1]{%
+  \begin{mybox}{darkyellow}{#1}
+}{\end{mybox}}
+
+\theoremstyle{definition}
+\newtheorem*{remark}{Remark}
 
 \titleformat{\chapter}[display]
     {\normalfont\huge\bfseries}{\chaptertitlename\ \thechapter}{20pt}{\Huge}
@@ -46,9 +64,9 @@
 
 \title{Math 503: Complex Analysis}
 \author{Frank Qiang}
-\date{Rutgers University
+\date{Rutgers University, Fall 2020
 \footnote{Disclaimer: I did not attend this class in person, nor do I go to this university.}
-, Fall 2020}
+}
 
 \begin{document}
   \maketitle
@@ -58,10 +76,13 @@
   \tableofcontents
   \endgroup
 
-  \foreach \i in {00, 01, 02, 03, 04, ..., 50} {%
-    \edef\FileName{lectures/lecture\i.tex}%     The % here are necessary to eliminate any
-    \IfFileExists{\FileName}{%  spurious spaces that may get inserted
-       \input{\FileName}%       at these points
-    }
-}
+  % \foreach \i in {00, 01, 02, 03, 04, ..., 50} {%
+  %   \edef\FileName{lectures/lecture\i.tex}%     The % here are necessary to eliminate any
+  %   \IfFileExists{\FileName}{%  spurious spaces that may get inserted
+  %      \input{\FileName}%       at these points
+  %   }
+  % }
+  \input{lectures/lecture01.tex}
+  \input{lectures/lecture02.tex}
+  \input{lectures/lecture03.tex}
 \end{document}

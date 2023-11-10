@@ -10,16 +10,19 @@ at $z \in \Omega$ if
 exists. $f$ is holomorphic on $\Omega$ if it is
 holomorphic at all $z \in \Omega$.
 
+\begin{thm}{Theorem}
 If a function $f = u + iv$ is holomorphic, then:
 \begin{enumerate}[(i).]
   \item The complex derivative $f'(z)$ satisfies
-    \[f'(z) = \frac{\partial}{\partial z} f = \frac{\partial}{\partial x} f = u_x + iv_x.\]
+    $f'(z) = \frac{\partial}{\partial z} f = \frac{\partial}{\partial x} f = u_x + iv_x$.
   \item The Jacobian $\left\lvert J \right\rvert = \left\lvert f'(z) \right\rvert^2 = u_x^2 + v_x^2$.
   \item (Cauchy-Riemann) $u_x = v_y$ and $u_y = -v_x$.
   \item The partial derivative with respect to $\overline{z}$ satisfies
-    \[\frac{\partial}{\partial \overline{z}} f = 0.\]
+    $\frac{\partial}{\partial \overline{z}} f = 0$.
 \end{enumerate}
+\end{thm}
 
+\section{Practice with Holomorphic Functions}
 \begin{mybox}{darkyellow}{Example 1}
   Let $f = (u, v) = u + iv$ where $u = x^2 + y^2$ and
   $v = 2xy$. Is $f$ holomorphic?
@@ -43,3 +46,216 @@ If a function $f = u + iv$ is holomorphic, then:
   So $f$ \textit{is} holomorphic and it indeed satisfies
   the Cauchy-Riemann equations.
 \end{proof}
+
+\begin{examp}{Example 3}
+  Let $f = (u, v) = u + iv$ where $u = x^2 - y^2$ and
+  $v = -2xy$. Is $f$ holomorphic?
+\end{examp}
+
+\begin{proof}[Solution]
+  Compute
+  \[
+    \frac{\partial}{\partial \overline{z}} f
+    = \frac{1}{2}\left(\frac{\partial}{\partial x} (u + iv) - \frac{1}{i} \frac{\partial}{\partial y} (u + iv)\right)
+    = 2x - 2yi = 2\overline{z}
+  .\]
+  So $f = {\overline{z}}^2$, which is not
+  holomorphic. This is actually called
+  \textit{anti-holomorphic}, when
+  $\frac{\partial}{\partial z} f = 0$.
+\end{proof}
+
+\begin{examp}{Example 4}
+  Let $f = (u, v) = u + iv$ where $u = x^2 + y^2$ and
+  $v = 0$. Is $f$ holomorphic?
+\end{examp}
+
+\begin{proof}[Solution]
+  Compute
+  \[
+  \frac{\partial}{\partial z} f =
+  \frac{1}{2}\left(\frac{\partial}{\partial x}(u + iv) + \frac{1}{i} \frac{\partial}{\partial y} (u + iv)\right)
+  = \frac{1}{2}\left(2x + \frac{1}{i} 2y\right)
+  = x - iy = \overline{z}
+  .\]
+  Similarly we can find that
+  $\frac{\partial}{\partial \overline{z}} = z$.
+  Note that $f(z) = |z|^2 = z \overline{z}$, which
+  is not holomorphic.
+\end{proof}
+
+\section{Converse of Cauchy-Riemann}
+\begin{thm}{Theorem (Converse of Cauchy-Riemann equations)}
+  If $u$ and $v$ are $\R^2$-differentiable near $z$ and
+  satisfy the Cauchy-Riemann equations at $z$,
+  then the complex function $f = u + iv$ is holomorphic
+  at $z$.
+\end{thm}
+
+\begin{proof}
+  For $h = h_1 + ih_2$, look at
+  \[
+    f(z + h) - f(z) = u(z + h) - u(z)
+    + i(v(z + h) - v(z))
+    = u_x h_1 + u_y h_2 + i(v_x h_1 + v_y h_2)
+    + o(|h|)
+  \]
+  Then by the Cauchy-Riemann equations
+  ($u_y \to -v_x$ and $v_y \to u_x$),
+  \begin{align*}
+    f(z + h) - f(z)
+    &= u_x h_1 - v_x h_2 + i(v_x h_1 + u_x h_2) + o(|h|)
+    = (u_x + iv_x) h_1 + i(u_x + iv_x) h_2 + o(|h|) \\
+    &= (u_x + iv_x) (h_1 + ih_2) + o(|h|)
+    = (u_x + iv_x) h + o(|h|)
+  \end{align*}
+  Dividing by $h$ gives
+  \[
+    \frac{f(z + h) - f(z)}{h} =
+    \frac{\partial}{\partial x} f + o(1)
+    = f'(z) + o(1)
+  .\]
+  So $f'(z)$ exists and $f$ is holomorphic at $z$.
+\end{proof}
+
+\begin{remark}
+  It is not enough for $u_x, u_y, v_x, v_y$ to exist
+  and satisfy the Cauchy-Riemann equations for
+  holomorphicity. We really need $u$ and $v$ to be
+  $\R^2$-differentiable. The classic counterexample here
+  is
+  \[
+  f = \frac{z^5}{|z|^4}
+  = \frac{z^5}{z^2 {\overline{z}}^2}
+  = \frac{z^3}{{\overline{z}}^2}
+  .\]
+\end{remark}
+
+\section{Analytic Functions}
+Recall that $f : \Omega \to \C$ is analytic near
+$z_0 \in \Omega$ if there exists $R > 0$ and a power series
+representation
+\[
+  f(z) = \sum_{n \ge 0} a_n(z - z_0)^n
+\]
+which converges to $f$ absolutely for each $z$
+in an open ball $B_R(z_0)$.
+
+\begin{examp}{Example}
+  \[\sum_{n \ge 0} \frac{z^n}{n!} = \exp(z), \quad \text{radius of convergence $R = \infty$.}\]
+  \[
+    \sum \frac{z^{2n}}{(2n)!} (-1)^n
+    = \cos(z) = \frac{e^{iz} + e^{-iz}}{2}, \quad R = \infty.
+  \]
+  \[
+    \sum \frac{z^{2n + 1}}{(2n + 1)!} (-1)^n
+    = \sin(z) = \frac{e^{iz} - e^{-iz}}{2i}, \quad R = \infty.
+  \]
+  \[
+    \sum z^n = \frac{1}{1 - z}, \quad \text{converges for $|z| < R = 1$}.
+  \]
+  \[
+    \sum 2^n z^n
+    = \frac{1}{1 - 2z}, \quad |z| < R = \frac{1}{2}
+  .\]
+  So even exponential growth in $a_n$ can result in a
+  positive radius of convergence!
+  \[
+    \sum n! z^n, \quad \text{$R = 0$, i.e. it diverges everywhere}
+  .\]
+  This grows too fast. For $n > |z|$, $n! z^n \to \infty$,
+  and $a_n \to 0$ is a necessary condition for convergence.
+\end{examp}
+
+So what happens in general?
+
+\begin{thm}{Theorem (Hadamard)}
+  Let $\sum a_n z^n$ be a power series. Then there exists
+  some $0 \le R < \infty$ such that:
+  \begin{enumerate}[(i)]
+    \item For all $|z| < R$, the series converges absolutely.
+    \item For all $|z| > R$, the series diverges.
+  \end{enumerate}
+  Furthermore, $R = \frac{1}{L}$ where
+  $L = \limsup |a_n|^{1 / n}$.
+\end{thm}
+
+\begin{proof}[Proof of (i)]
+  Assume $0 < R < \infty$ (the cases $R = 0$ and
+  $R = \infty$ are left as exercises). Let
+  $L = \limsup |a_n|^{1 / n}$ and let $|z| < R$.
+  Note that $L = \limsup |a_n|^{1 / n}$ means that for
+  all $\epsilon$, there exists $N$ such that
+  for all $n > N$,
+  \[
+    |a_n|^{1 / n} < L + \epsilon
+  .\]
+  There exists $\epsilon$ such that
+  $(L + \epsilon)|z| \le r < R = \frac{1}{L}$.
+  So $L|z| < 1$. Let $\epsilon$ be small enough such
+  that $(L + \epsilon)|z| \le r < 1$.
+  Now look at the tail of the series:
+  \[
+    \sum_{n > N} |a_n| |z|^n
+    \le \sum_{n > N} (L + \epsilon)^n |z|^n
+    \le \sum_{n > N} r^n < \infty
+  \]
+  since $r < 1$. So the series converges absolutely
+  for $|z| < R$.
+  The proof for (ii) is left as an exercise.
+\end{proof}
+
+For example, if $a_n = n!$, recall that
+$n! \approx n^n e^{-n} \sqrt{n}$ by Stirling's formula.
+So
+\[
+  \left|\frac{1}{n!}\right|^{\frac{1}{n}}
+  \approx \frac{e}{n} \to 0 = L
+\]
+and $R = 0$. So we should expect this to diverge
+everywhere.
+
+\begin{thm}{Theorem (Analytic implies holomorphic)}
+  If $f = \sum a_n z^n$ has a radius of convergence
+  $R > 0$, then $f$ is holomorphic on $|z| < R$.
+  Moreover,
+  \[
+    f'(z) = \sum n a_n z^{n - 1}
+  ,\]
+  which has the same radius $R$ of absolute convergence.
+\end{thm}
+
+\begin{proof}[Sketch of proof]
+  We know $f$ is analytic, so let
+  \[S_N(z) = \sum_{n \le N} a_n z^n, \quad E_N(z) = \sum_{n > N} a_n z^n\]
+  be the partial sums and error terms, respectively.
+  Let
+  \[
+    g(z) = \sum n a_n z^{n - 1}
+  .\]
+  Note that $n^{1 / n} \to 1$, so clearly $g$ has
+  absolute convergence for $|z| < R$. Then want to
+  show that
+  \[
+    \left|\frac{f(z + h) - f(z)}{h} - g(z)\right| \to 0
+  .\]
+  The key is to use a $3\epsilon$ argument.
+  Since $f(z) = S_N + E_N$, we have
+  \[
+    \left|\frac{f(z + h) - f(z)}{h} - g(z)\right|
+    \le \left|\frac{S_N(z + h) - S_N(z)}{h} - S_N'\right|
+    + |S_N' - g| + \left|\frac{E_N(z + h) - E_N(z)}{h}\right|
+  .\]
+  The first term is less than $\epsilon$ since
+  $S_N$ is a polynomial, which are holomorphic.
+  The second term is small since $g$ is a convergent
+  power series and $g \to S_N'$. The final term is
+  small since $E_N$ is an error term.
+\end{proof}
+
+\begin{remark}
+  Really the miracle about complex analysis is
+  that holomorphicity implies analyticity, and analytic
+  functions are the ones that have all these nice
+  properties (e.g. infinite differentiability, etc.).
+\end{remark}
