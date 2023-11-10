@@ -209,8 +209,8 @@ For example, if $a_n = n!$, recall that
 $n! \approx n^n e^{-n} \sqrt{n}$ by Stirling's formula.
 So
 \[
-  \left|\frac{1}{n!}\right|^{\frac{1}{n}}
-  \approx \frac{e}{n} \to 0 = L
+  \left|n!\right|^{\frac{1}{n}}
+  \approx \frac{n}{e} \to \infty = L
 \]
 and $R = 0$. So we should expect this to diverge
 everywhere.
@@ -234,7 +234,14 @@ everywhere.
     g(z) = \sum n a_n z^{n - 1}
   .\]
   Note that $n^{1 / n} \to 1$, so clearly $g$ has
-  absolute convergence for $|z| < R$. Then want to
+  absolute convergence for $|z| < R$.
+  \footnote{
+    To show this, let $f = n^{1 / n}$ and look at
+    its log. We have
+    $\ln f = \ln(n^{1 / n}) = \frac{1}{n} \ln n \to 0$,
+    so $f \to 1$.
+  }
+  Then want to
   show that
   \[
     \left|\frac{f(z + h) - f(z)}{h} - g(z)\right| \to 0
