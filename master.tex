@@ -1,5 +1,6 @@
 \documentclass[12pt, letterpaper, oneside]{book}
-\usepackage[margin=0.5in]{geometry}
+% \usepackage[margin=0.5in]{geometry}
+\usepackage{fullpage}
 \usepackage{microtype}
 \usepackage{kpfonts}
 \usepackage{amsmath, amssymb, amsthm}
@@ -11,6 +12,15 @@
 \usepackage{titlesec}
 \usepackage{pgffor}
 \usepackage[shortlabels]{enumitem}
+
+\setlength{\hoffset}{-1.54cm}
+\setlength{\voffset}{-1.54cm}
+\setlength{\topmargin}{0pt}
+\setlength{\headsep}{0pt}
+\setlength{\headheight}{0pt}
+\setlength{\oddsidemargin}{0pt}
+\setlength{\textwidth}{195mm}
+\setlength{\textheight}{250mm}
 
 \renewcommand{\chaptername}{Lecture}
 %\setlist{noitemsep}
@@ -64,8 +74,7 @@
 
 \title{Math 503: Complex Analysis}
 \author{Frank Qiang}
-\date{Rutgers University, Fall 2020
-\footnote{Disclaimer: I did not attend this class in person, nor do I go to this university.}
+\date{Rutgers University, Fall 2020\footnote{Lectures from \href{https://sites.math.rutgers.edu/~alexk/2020F503/index.html}{https://sites.math.rutgers.edu/$\sim$alexk/2020F503/index.html}.}
 }
 
 \begin{document}
@@ -85,4 +94,5 @@
   \input{lectures/lecture01.tex}
   \input{lectures/lecture02.tex}
   \input{lectures/lecture03.tex}
+  \input{lectures/lecture04.tex}
 \end{document}

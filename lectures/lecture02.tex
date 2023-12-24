@@ -25,17 +25,15 @@ it looks like a line.
 
 In other words, $f : \R^n \to \R^m$ is differentiable if
 it is \textit{locally affine}. If
-\[
-f(x_1, \dots, x_m) = (f_1(\vec{x}), \dots, f_m(\vec{x}))
-,\]
+$f(x_1, \dots, x_m) = (f_1(\vec{x}), \dots, f_m(\vec{x}))$,
 then
 \[
 f(z + h) = f(z) + Lh + o(|h|)
 .\] 
 Here $L$ is the \textit{total derivative}, given by
 \[
-  L = \left(\frac{\partial f_i}{\partial x_j}\right)_{ij}
-.\]
+  L = \left(\frac{\partial f_i}{\partial x_j}\right)_{ij}.
+\]
 
 \section{Holomorphic Functions}
 We can identify a function $f(x, y) = (u, v)$ with
@@ -60,8 +58,7 @@ we can over $\C$.
   \[
     \lim_{h \to 0} \frac{f(z + h) - f(z)}{h}
   \]
-  exists.
-  \footnote{Here, $\Omega$ is an \textit{open subset} of
+  exists.\footnote{Here, $\Omega$ is an \textit{open subset} of
     $\C$.}
   If it does, then we call this limit $f'(z)$.
 
@@ -106,8 +103,7 @@ about further derivatives?
   f^{(n)}(z) = P_n(z^{-1})e^{-\frac{1}{z^2}}
 ,\] 
 so $f^{(n)} \to 0$ also as $z \to 0$. So
-$f \in C^\infty(\R)$.
-\footnote{Meaning $f$ is \textit{smooth}, or infinitely
+$f \in C^\infty(\R)$.\footnote{Meaning $f$ is \textit{smooth}, or infinitely
 differentiable.}
 
 Now take
@@ -118,8 +114,7 @@ g(z) =
   0, & z \le 0.
 \end{cases}
 \]
-This is an example of a \textit{smooth bump function}.
-\footnote{These are used in real analysis, particularly
+This is an example of a \textit{smooth bump function}.\footnote{These are used in real analysis, particularly
 for \textit{partitions of unity}.}
 All derivatives of $g$ are $0$ for $z > 0$ as before,
 and they are also $0$ for $z \le 0$ by definition. So
@@ -129,8 +124,7 @@ $f \ne g$ on $z < 0$.
 Notice that $f$ and $g$ both extend
 $\left.e^{-1 / z^2}\right\rvert_{\R^+}$ to all of $\R$,
 yet $f \ne g$. We will see later that this cannot
-happen for complex-analytic functions.
-\footnote{This is the fact that \textit{analytic continuations} are \textit{unique}.}
+happen for complex-analytic functions.\footnote{This is the fact that \textit{analytic continuations} are \textit{unique}.}
 
 \begin{mybox}{nordblue}{Definition (Analytic)}
   A function $f$ is \textit{analytic} at $z$ if there
@@ -162,8 +156,7 @@ are zero:
 Thus the series expansion of $f$ converges to $0$, but
 there is no neighborhood of $0$ where $f \equiv 0$.
 So $f$ is \textit{not} analytic. This also cannot
-happen for complex-valued functions.
-\footnote{This is why the terms \textit{holomorphic} and
+happen for complex-valued functions.\footnote{This is why the terms \textit{holomorphic} and
 \textit{analytic} are often used interchangeably in
   complex analysis.}
 
@@ -172,8 +165,7 @@ Now, $f$ isn't even continuous! If $z \to 0$
 from $\R$, $f \to 0$. But if $z = iy$ with $y \to 0$,
 \[f(z) = e^{-\frac{1}{(iy)^2}} = e^{\frac{1}{y^2}},\]
 which approaches $\infty$. The two paths give conflicting
-limits!
-\footnote{In fact, you can make $f$ converge to
+limits!\footnote{In fact, you can make $f$ converge to
   any value by picking some path. This is because $f$
   has an \textit{essential singularity} at $0$.}
 
@@ -229,16 +221,14 @@ What does this mean geometrically?
 
 \begin{mybox}{nordpurple}{Theorem ($QR$ decomposition)}
   Any matrix $L$ can be decomposed into $L = QR$ where
-  $Q$ is orthogonal
-  \footnote{One way to define \textit{orthogonal} is that
+  $Q$ is orthogonal\footnote{One way to define \textit{orthogonal} is that
     $Q$ is orthogonal if $QQ^T = I$.}
   and $R$ is upper-triangular.
 \end{mybox}
 
 In other words, given any matrix, we can rotate it so that
 it is upper-triangular. In particular, in the case of a
-$2 \times 2$ matrix $L$, we can write
-\footnote{Note that we factored $R$ by pulling out the
+$2 \times 2$ matrix $L$, we can write\footnote{Note that we factored $R$ by pulling out the
 diagonal entries.}
 \[
 L =
@@ -255,10 +245,8 @@ L =
     0 & 1
 \end{matrix}\right)}_{N}
 ,\]
-where $K$ is ``compact,'' $A$ is ``abelian,''
-\footnote{Or ``diagonal.''}
-and $N$ is ``unipotent.''
-\footnote{Same as saying all eigenvalues are $1$.}
+where $K$ is ``compact,'' $A$ is ``abelian,''\footnote{Or ``diagonal.''}
+and $N$ is ``unipotent.''\footnote{Same as saying all eigenvalues are $1$.}
 This is the \textit{Iwasawa decomposition}.
 
 % add images here showing this
@@ -317,8 +305,7 @@ This is if we think of $f$ as
 $f(x, y) = (u(x, y), v(x, y))$.
 
 Now, think of $f$ as a function of two other auxiliary
-variables, $z$ and $\overline{z}$.
-\footnote{Here, think of $z$ and $\overline{z}$ as
+variables, $z$ and $\overline{z}$.\footnote{Here, think of $z$ and $\overline{z}$ as
   independent variables. They are simply the result of
   the change of variables
   $(z, \overline{z}) = (x + iy, x - iy)$.}

@@ -1,0 +1,339 @@
+\chapter{Integration on Curves}
+
+\section{Last Time}
+\begin{mybox}{nordpurple}{Theorem}
+  $u, v : \R^2 \to \R$ are $\R^2$-differentiable and
+  satisfy the Cauchy-Riemann equations if and only
+  if $f = u + iv$ is holomorphic.
+\end{mybox}
+
+\begin{mybox}{nordpurple}{Theorem (Hadamard)}
+   Let $f(z) = \sum_{n \ge 0} a_n z^n$ be a power series.
+   Then there exists an $R \in [0, \infty]$ (in fact we
+   know $R = 1 / L$, where $L = \limsup_{n \to \infty} {|a_n|}^{1 / n}$)
+   such that
+   \begin{enumerate}
+     \item for all $|z| < R$, the series converges
+       absolutely and
+     \item for all $|z| > R$, the series diverges.
+   \end{enumerate}
+   Moreover, the convergence is uniform for all
+   $|z| < r < R$.
+\end{mybox}
+
+For the last part, recall that for
+$|z| < r < R = 1 / L$, we can make $\epsilon$ so small
+that
+\[L|z| < r_1 < 1.\]
+From here there's enough room to make
+$(L + \epsilon)|z| < r_1 < 1$. Then
+\[
+  \sum_{n \ge N} |a_n| |z|^n \le \sum ((L + \epsilon)|z|)^n
+  = \sum_{n \ge N} r_1^n < \infty,
+\]
+so the convergence is uniform.
+
+\begin{mybox}{nordpurple}{Theorem (Analytic $\implies$ holomorphic)}
+  If $f(z) = \sum a_n z^n$ with radius of convegence
+  $R > 0$, then $f'(z)$ exists and
+  \[f'(z) = g(z) = \sum n a_n z^{n - 1},\]
+  and $g$ has the same radius of convergence $R$.
+\end{mybox}
+
+\begin{proof}
+  Note that $g$ clearly has the same radius of convergence
+  $R$ since $n^{1 / n} \to 1$. Now for $|z|, |z + h| < r < R$,
+  \[
+    \frac{f(z + h) - f(z)}{h} - g(z)
+    = \frac{f(z + h) - f(z)}{h} - \frac{S_N(z + h) - S_N(z)}{h} + \frac{S_N(z + h) - S_N(z)}{h} - S_N'(z)
+    + S_N'(z) - g(z).
+  \]
+  Here $S_N(z) = \sum_{n \le N} a_n z^n$ are the partial
+  sums. Note that $S_N$ is a finite polynomial in $z$.
+  Then by the triangle inequality,
+  \[
+    \left|\frac{f(z + h) - f(z)}{h} - g(z) \right|
+    \le \left|\frac{f(z + h) - f(z)}{h} - \frac{S_N(z + h) - S_N(z)}{h}\right|
+    + \left|\frac{S_N(z + h) - S_N(z)}{h} - S_N'(z)\right|
+    + \left|S_N'(z) - g(z)\right|.
+  \]
+  For the last term, note that $S_N' \to g$ uniformly by Hadamard's theorem.
+  Then for any $\epsilon > 0$, there exists $N_1$ such that
+  for all $|z| < r$ and $N \ge N_1$,
+  \[
+    \left|S_N'(z) - g(z)\right| < \epsilon.
+  \]
+  For the second term, note that $S_N$ is a polynomial.
+  So for all $N$ and $\epsilon > 0$, there exists
+  $\delta > 0$ such that for all $|h| < \delta$ (pick
+  $\delta$ small enough so that $|z + h| < r < R$),
+  \[\left|\frac{S_N(z + h) - S_N(z)}{h} - S_N'(z)\right| < \epsilon.\]
+  For the first term, note that $f$ is the infinite
+  sum while $S_N$ is a finite sum, so their difference
+  is the tail:
+  \begin{align*}
+  \left|\frac{f(z + h) - f(z)}{h} - \frac{S_N(z + h) - S_N(z)}{h}\right|
+  &= \left|\frac{1}{h} \sum_{n > N} a_n \left[(z + h)^n - z^n\right]\right| \\
+  &= \left|\frac{1}{h} \sum_{n > N} a_n h((z + h)^{n - 1} + (z + h)^{n - 2} z + \dots + z^{n - 1})\right|,
+  \end{align*}
+  using the fact that $a^n - b^n = (a - b)(a^{n - 1} + a^{n - 2}b + \dots + b^{n - 1})$.
+  Then we can cancel the $h$ to get
+  \[
+  \left|\frac{f(z + h) - f(z)}{h} - \frac{S_N(z + h) - S_N(z)}{h}\right|
+  = \left|\sum_{n > N} a_n((z + h)^{n - 1} + (z + h)^{n - 2} z + \dots + z^{n - 1})\right|
+  \le \sum_{n > N} |a_n| n r^{n - 1}
+  \]
+  since $|z + h|, |z| < r < R$. Now by the absolute
+  convergence of $g$ on $|z| < R$, for all $\epsilon > 0$
+  we can find $N_2$ such that for all $N \ge N_2$,
+  \[
+  \left|\frac{f(z + h) - f(z)}{h} - \frac{S_N(z + h) - S_N(z)}{h}\right|
+  \le \sum_{n > N} |a_n| n r^{n - 1} < \epsilon.
+  \]
+  So for a fixed $\epsilon > 0$, let $N > \max\{N_1, N_2\}$.
+  Then we can find $\delta > 0$ such that
+  \[
+  \left|\frac{f(z + h) - f(z)}{h} - g(z)\right|
+  \le \epsilon + \epsilon + \epsilon = 3\epsilon,
+  \]
+  so the limit exists and is equal to $g(z)$.
+\end{proof}
+
+\begin{mybox}{nordpurple}{Corollary}
+  $f$ analytic implies $f \in C^\infty_\C$, i.e. it is
+  infinitely differentiable in the complex sense. Also
+  each $f^{(n)}$ has the same radius of convergence $R$
+  and is given by termwise differentiation.
+\end{mybox}
+
+\pagebreak
+\section{Integration Over Curves}
+
+\subsection{Parametric Curves}
+\begin{mybox}{nordblue}{Definition (Parametric curve)}
+  A \textit{parametric curve} is a function
+  $z : [a, b] \to \C$ which is continuously
+  differentiable. Furthermore, one-sided
+  derivatives exist at $a^+$ and $b^-$ and are continuous.
+\end{mybox}
+
+In this area, this is usually what mathematicians
+mean when they say \textit{smooth}, as opposed to being
+infinitely differentiable. We say that $z$ is
+\textit{piecewise smooth} if $z : [a, b] \to \C$
+is continuous and continuously differentiable on
+finitely many pieces $a = a_0 < a_1 < \dots < a_n = b$.
+
+\begin{mybox}{darkyellow}{Example}
+  We can parametrize the unit circle by
+  $z : [0, 1] \to \C$ with
+  $z(t) = e^{2\pi it}$ or
+  $z : [0, 2\pi] \to \C$ with
+  $z(t) = e^{it}$.
+\end{mybox}
+
+This is kind of annoying since they are really the
+exact same curve, so we would like to define some
+kind of equivalence relation on these parametrizations.
+
+\begin{mybox}{nordblue}{Definition (Equivalence of parametric curves)}
+  We call two parametric curves $z : [a, b] \to \C$ and
+  $\tilde{z} : [c, d] \to \C$ \textit{equivalent} if
+  there exists a continuously differentiable bijection
+  $t : [a, b] \to [c, d]$ such that
+  $\tilde{z}(s) = z(t(s))$ and preserves orientation,
+  i.e. $t'(s) > 0$.
+\end{mybox}
+
+Note that we need $t'(s) \ge 0$ since we do care about
+the orientation of our curves.
+Here the opposite curve $z^- : [a, b] \to \C$ is given by
+$z^-(t) = z(a + b - t)$. Furthermore we need
+$t'(s) \ne 0$ to guarantee that $t^{-1}$ is
+differentiable. This ensures that we have actually
+defined an equivalence relation.
+
+\begin{mybox}{nordblue}{Definition (Smooth curve)}
+  A \textit{smooth curve} $\gamma$ is an equivalence class
+  $\gamma = [z] = \text{parametric curve } /\sim$ of
+  parametric curves.
+\end{mybox}
+
+\subsection{Integrals and Immediate Results}
+\begin{mybox}{nordblue}{Definition (Integral of a function along a curve)}
+  If $f : \Omega \to \C$ is continuous and
+  $\gamma \subseteq \Omega$ is a smooth curve, then the
+  \textit{integral} of $f$ along $\gamma$ is defined as
+  \[
+    \int_\gamma f(z) dz = \int_a^b f(z(t)) \cdot z'(t)\, dt
+  \]
+  for some parametrization
+  $z : [a, b] \to \C$ of $\gamma$.
+\end{mybox}
+
+\begin{mybox}{nordpurple}{Lemma}
+  The above definition of the integral of $f$
+  along $\gamma$ is independent of the choice of
+  $z$.
+\end{mybox}
+
+\begin{proof}
+  Suppose that we use some other parametrization
+  $\tilde{z} : [c, d] \to \C$ of $\gamma$. Then
+  by definition $\tilde{z}(s) = z(t(s))$ for some
+  $t : [a, b] \to [c, d]$. Noting that
+  \[
+    \tilde{z}'(s) \, ds = z'(t(s)) t'(s) \, ds
+    = z'(t(s)) \, dt,
+  \]
+  we can make the change of variables $t \mapsto t(s)$
+  to get
+  \[
+    \int_a^b f(z(t)) \cdot z'(t) \, dt
+    = \int_c^d f(z(t(s))) \cdot z'(t(s)) t'(s)\, ds
+    = \int_c^d f(\tilde{z}(s)) \cdot \tilde{z}'(s)\, ds,
+  \]
+  as desired. Thus the integral is indeed well-defined.
+\end{proof}
+
+\begin{mybox}{nordblue}{Definition (Length of a curve)}
+  The length of a curve $\gamma$ is
+  \[
+    \text{length}(\gamma) = \ell(\gamma)
+    = \int_a^b |z'(t)|\, dt
+  \]
+  for some parametrization
+  $z : [a, b] \to \C$ of $\gamma$.
+\end{mybox}
+
+\begin{mybox}{nordpurple}{Lemma}
+  If $f : \Omega \to \C$ is continuous and
+  $\gamma \subseteq \Omega$ is a smooth curve, then
+  \[
+    \left|\int_{\gamma} f(z) \, dz\right|
+    \le \sup_{\gamma} |f| \cdot \ell(\gamma).
+  \]
+\end{mybox}
+
+\begin{proof}
+  Pick some parametrization $z : [a, b] \to \C$ of
+  $\gamma$. Then
+  \begin{align*}
+    \left|\int_{\gamma} f(z) \, dz\right|
+    &= \left|\int_a^b f(z(t)) z'(t)\, dt\right|
+    \le \int_a^b |f(z(t))| |z'(t)|\, dt
+    \le \int_a^b \sup_{\gamma} |f| \cdot |z'(t)|\, dt \\
+    &= \sup_{\gamma} |f| \int_a^b |z'(t)|\, dt
+    = \sup_{\gamma} |f| \cdot \ell(\gamma),
+  \end{align*}
+  By the triangle inequality. Note that
+  $\sup_{\gamma} |f|$ is independent of $t$, so we
+  can pull it out of the integral.
+\end{proof}
+
+\begin{mybox}{nordblue}{Definition (Primitive)}
+  Let $\Omega \subseteq \C$ be open.
+  If $f : \Omega \to \C$ and there exists some
+  holomorphic $F : \Omega \to \C$
+  with $F' = f$, then we say that $F$ is a
+  \textit{primitive} of $f$.
+\end{mybox}
+
+\begin{mybox}{nordpurple}{Theorem}
+  If $f : \Omega \to \C$ is continuous with
+  primitive $F$ and $\gamma \subseteq \Omega$
+  is a smooth curve, then
+  \[
+    \int_{\gamma} f(z) \, dz = F(w_1) - F(w_0),
+  \]
+  where $w_0, w_1$ are the start and end points of
+  $\gamma$, respectively.
+\end{mybox}
+
+\begin{proof}
+  Pick some parametrization $z : [a, b] \to \C$ of
+  $\gamma$. Then
+  \[
+    \int_{\gamma} f(z) \, dz
+    = \int_a^b f(z(t)) z'(t)\, dt
+    = \int_a^b F'(z(t)) z'(t)\, dt
+    = \int_a^b (F \circ z)'(t)\, dt
+    = F(z(b)) - F(z(a))
+    = F(w_1) - F(w_0)
+  \]
+  by the fundamental theorem of calculus.
+\end{proof}
+
+\begin{mybox}{nordpurple}{Corollary}
+  If a continuous function $f : \Omega \to \C$ has a
+  primitive and
+  $\gamma \subseteq \Omega$ is a closed curve, then
+  \[
+    \oint_{\gamma} f(z) \, dz = 0.
+  \]
+\end{mybox}
+
+\begin{proof}
+  We have $w_0 = w_1$ since $\gamma$ is closed,
+  after which the result follows from the previous
+  theorem.
+\end{proof}
+
+\begin{mybox}{darkyellow}{Example}
+  Let $f(z) = 1 / z$ and $\gamma$ be the unit circle.
+  Parametrize $\gamma$ by $z : [0, 1] \to \C$ with
+  $t \mapsto e^{2\pi it}$. Then
+  \[
+    \int_{\gamma} f(z) \, dz
+    = \int_{\gamma} \frac{1}{z} \, dz
+    = \int_0^1 \frac{1}{e^{2\pi it}} \cdot 2\pi i e^{2\pi it}\, dt
+    = \int_0^1 2\pi i\, dt
+    = 2\pi i
+    \ne 0.
+  \]
+  This implies that $f(z)$ does not have a primitive
+  for any $\Omega \supseteq S^1$, where $S^1$ is the
+  unit circle.
+\end{mybox}
+
+\begin{mybox}{nordpurple}{Corollary}
+  Let $\Omega \subseteq \C$ be open and connected.
+  If $f : \Omega \to \C$ is holomorphic and
+  $f' \equiv 0$ on $\Omega$, then $f \equiv C$.
+\end{mybox}
+
+\begin{proof}
+  Note that $\Omega$ being open and connected means
+  that it is path-connected. Then fix any
+  $w_0 \in \Omega$. Since $\Omega$ is path-connected,
+  for any other $w_1 \in \Omega$ there exists a curve
+  $\gamma : w_0 \to w_1$. Then
+  \[
+    f(w_1) - f(w_0)
+    = \int_{\gamma} f'(z) \, dz
+    = \int_{\gamma} 0 \, dz
+    = 0,
+  \]
+  so we have $f(w_1) = f(w_0)$ for all $w_1 \in \Omega$.
+  Thus $f$ is constant.
+\end{proof}
+
+\begin{mybox}{darkyellow}{Example}
+  Let $f(z) = 1$ and $\gamma : 0 \to 1 + i$. Parametrize
+  $\gamma : [0, 1] \to \C$ by
+  $t \mapsto t + it$. Then
+  \[
+    \int_{\gamma} f(z) \, dz
+    = \int_{\gamma} 1 \, dz
+    = \int_0^1 1 \cdot (1 + i)\, dt
+    = 1 + i.
+  \]
+  Another way to proceed is to see that $f$ has a
+  primitive $F(z) = z$. Then by the previous theorem,
+  \[
+    \int_{\gamma} f(z) \, dz
+    = F(1 + i) - F(0)
+    = 1 + i.
+  \]
+  Notice that the two computations match.
+\end{mybox}
